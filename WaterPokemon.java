@@ -33,14 +33,14 @@ public class WaterPokemon extends Pokemon {
     }
 
     public void evolve() {
-        if (getLevel() >= 20) {
+        if (getLevel() >= 20 && getLevel() < 45) {
             System.out.println(getName() + " is evolving into a Wartortle!");
-            Pokemon waterPokemon = new WaterPokemon("Wartortle", getLevel(), "Water");
-            System.out.println("waterPokemon name changed to " + waterPokemon.getName());
+            setName("Wartortle");
+            System.out.println("waterPokemon name changed to " + getName());
         } else if (getLevel() >= 45) {
             System.out.println(getName() + " is evolving into a Blastoise!");
-            Pokemon waterPokemon = new WaterPokemon("Blastoise", getLevel(), "Water");
-            System.out.println("waterPokemon name changed to " + waterPokemon.getName());
+            setName("Blastoise");
+            System.out.println("waterPokemon name changed to " + getName());
         } else {
             System.out.println(getName() + " is not ready to evolve yet.");
         }

@@ -28,6 +28,14 @@ class Main {
         }
 
         firePokemon.evolve();
-        System.out.println(firePokemon.getAttackList());
+
+        firePokemon.setLevel(50);
+
+        firePokemon.evolve();
+
+        System.out.println("the fire pokemon has the following attacks: " + firePokemon.getAttackList());
+        System.out.println("the water pokemon has the following attacks: " + waterPokemon.getAttackList());
+        System.out.println("the grass pokemon has the following attacks: " + grassPokemon.getAttackList());
+        System.out.println("the electric pokemon has the following attacks: " + electricPokemon.getAttackList());
     }
 }

@@ -35,8 +35,8 @@ public class ElectricPokemon extends Pokemon {
     public void evolve() {
         if (getLevel() >= 30) {
             System.out.println(getName() + " is evolving into a Raichu!");
-            Pokemon electricPokemon = new ElectricPokemon("Raichu", getLevel(), "Electric");
-            System.out.println("electricPokemon name changed to " + electricPokemon.getName());
+            setName("Raichu");
+            System.out.println("electricPokemon name changed to " + getName());
         } else {
             System.out.println(getName() + " is not ready to evolve yet.");
         }

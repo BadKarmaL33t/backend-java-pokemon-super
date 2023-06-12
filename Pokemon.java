@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 abstract class Pokemon {
@@ -80,6 +81,10 @@ abstract class Pokemon {
         return level;
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public int getHp() {
         return hp;
     }
@@ -119,6 +124,11 @@ abstract class Pokemon {
     abstract void evolve();
 
     abstract List<String> getAttackList();
+
+    @Override
+    public String toString() {
+        return Arrays.toString(pokemonType);
+    }
 }
 
 

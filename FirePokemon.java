@@ -1,7 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 public class FirePokemon extends Pokemon {
     private final Map<String, Integer> attacks;
 
@@ -33,19 +31,21 @@ public class FirePokemon extends Pokemon {
     }
 
     void evolve() {
-        if (getLevel() >= 20) {
+        if (getLevel() >= 20 && getLevel() < 50) {
             System.out.println(getName() + " is evolving into a Charmeleon!");
             setName("Charmeleon");
-            Pokemon firePokemon = new FirePokemon("Charmeleon", getLevel(), "Fire");
-            System.out.println("firePokemon name changed to " + firePokemon.getName());
+            System.out.println("firePokemon name changed to " + getName());
         } else if (getLevel() >= 50) {
             System.out.println(getName() + " is evolving into a Charizard!");
-            Pokemon firePokemon = new FirePokemon("Charizard", getLevel(), "Fire", "Flying");
-            System.out.println("firePokemon name changed to " + firePokemon.getName());
+            setName("Charizard");
+            System.out.println("firePokemon name changed to " + getName());
+            setPokemonType(new String[]{"Fire", "Flying"});
+            System.out.println("firePokemon type changed to " + Arrays.toString(getPokemonType()));
         } else {
             System.out.println(getName() + " is not ready to evolve yet.");
         }
     }
+
     @Override
     public List<String> getAttackList() {
         List<String> attackList = new ArrayList<>();

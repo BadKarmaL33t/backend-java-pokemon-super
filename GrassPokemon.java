@@ -33,14 +33,15 @@ public class GrassPokemon extends Pokemon {
     }
 
     public void evolve() {
-        if (getLevel() >= 20) {
+        if (getLevel() >= 20 && getLevel() < 45) {
             System.out.println(getName() + " is evolving into a Ivysaur!");
-            Pokemon grassPokemon = new GrassPokemon("Ivysaur", getLevel(), "Grass", "Poison");
-            System.out.println("grassPokemon name changed to " + grassPokemon.getName());
+            setName("Ivysaur");
+            System.out.println("grassPokemon name changed to " + getName());
         } else if (getLevel() >= 45) {
             System.out.println(getName() + " is evolving into a Venusaur!");
-            Pokemon grassPokemon = new GrassPokemon("Venusaur", getLevel(), "Grass", "Poison");
-            System.out.println("grassPokemon name changed to " + grassPokemon.getName());
+            setName("Venusaur");
+            Pokemon grassPokemon = new GrassPokemon(getName(), getLevel(), getPokemonType());
+            System.out.println("grassPokemon name changed to " + getName());
         } else {
             System.out.println(getName() + " is not ready to evolve yet.");
         }
