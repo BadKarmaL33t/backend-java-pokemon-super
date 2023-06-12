@@ -1,34 +1,35 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class WaterPokemon extends Pokemon {
+    private final Map<String, Integer> attacks;
     public WaterPokemon(String name, int level, String... pokemonType) {
         super(name, level, pokemonType);
+        attacks = new HashMap<>();
+        initializeAttacks();
+    }
+
+    private void initializeAttacks() {
+        attacks.put("hydroPump", 25);
+        attacks.put("rainDance", 15);
+        attacks.put("hydroCanon", 30);
+        attacks.put("aquaJet", 20);
     }
 
     public void eats(String foodName) {
         super.eats(foodName);
     }
 
-    public void hydroPump(Pokemon enemy) {
-        System.out.println(getName() + " is using Hydro Pump on " + enemy.getName());
-        int damage = getAttack() + 20 - enemy.getDefence();
-        enemy.defence(damage);
-    }
-
-    public void rainDance(Pokemon enemy) {
-        System.out.println(getName() + " is using Rain Dance on " + enemy.getName());
-        int damage = getAttack() + 10 - enemy.getDefence();
-        enemy.defence(damage);
-    }
-
-    public void hydroCanon(Pokemon enemy) {
-        System.out.println(getName() + " is using Hydro Canon on " + enemy.getName());
-        int damage = getAttack() + 30 - enemy.getDefence();
-        enemy.defence(damage);
-    }
-
-    public void aquaJet(Pokemon enemy) {
-        System.out.println(getName() + " is using Aqua Jet on " + enemy.getName());
-        int damage = getAttack() + 15 - enemy.getDefence();
-        enemy.defence(damage);
+    public void useAttack(String attackName, Pokemon enemy) {
+        if (attacks.containsKey(attackName)) {
+            System.out.println(getName() + " is using " + attackName + " on " + enemy.getName());
+            int damage = getAttack() + attacks.get(attackName) - enemy.getDefence();
+            enemy.defence(damage);
+        } else {
+            System.out.println(getName() + " does not know the attack: " + attackName);
+        }
     }
 
     public void evolve() {
@@ -43,5 +44,15 @@ public class WaterPokemon extends Pokemon {
         } else {
             System.out.println(getName() + " is not ready to evolve yet.");
         }
+    }
+
+    @Override
+    public List<String> getAttackList() {
+        List<String> attackList = new ArrayList<>();
+        attackList.add("hydroPump");
+        attackList.add("rainDance");
+        attackList.add("hydroCanon");
+        attackList.add("aquaJet");
+        return attackList;
     }
 }

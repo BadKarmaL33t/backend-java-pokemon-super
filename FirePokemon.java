@@ -1,35 +1,35 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 public class FirePokemon extends Pokemon {
+    private final Map<String, Integer> attacks;
 
     public FirePokemon(String name, int level, String... pokemonType) {
         super(name, level, pokemonType);
+        attacks = new HashMap<>();
+        initializeAttacks();
+    }
+
+    private void initializeAttacks() {
+        attacks.put("PyroBall", 20);
+        attacks.put("Inferno", 30);
+        attacks.put("FlameThrower", 15);
+        attacks.put("BlastBurn", 40);
     }
 
     public void eats(String foodName) {
         super.eats(foodName);
     }
 
-    public void pyroBall(Pokemon enemy) {
-        System.out.println(getName() + " is using Pyro Ball on " + enemy.getName());
-        int damage = getAttack() + 20 - enemy.getDefence();
-        enemy.defence(damage);
-    }
-
-    public void inferno(Pokemon enemy) {
-        System.out.println(getName() + " is using Inferno on " + enemy.getName());
-        int damage = getAttack() + 30 - enemy.getDefence();
-        enemy.defence(damage);
-    }
-
-    public void flameThrower(Pokemon enemy) {
-        System.out.println(getName() + " is using Flame Thrower on " + enemy.getName());
-        int damage = getAttack() + 15 - enemy.getDefence();
-        enemy.defence(damage);
-    }
-
-    public void blastBurn(Pokemon enemy) {
-        System.out.println(getName() + " is using Blast Burn on " + enemy.getName());
-        int damage = getAttack() + 40 - enemy.getDefence();
-        enemy.defence(damage);
+    public void useAttack(String attackName, Pokemon enemy) {
+        if (attacks.containsKey(attackName)) {
+            System.out.println(getName() + " is using " + attackName + " on " + enemy.getName());
+            int damage = getAttack() + attacks.get(attackName) - enemy.getDefence();
+            enemy.defence(damage);
+        } else {
+            System.out.println(getName() + " does not know the attack: " + attackName);
+        }
     }
 
     void evolve() {
@@ -45,6 +45,15 @@ public class FirePokemon extends Pokemon {
         } else {
             System.out.println(getName() + " is not ready to evolve yet.");
         }
+    }
+    @Override
+    public List<String> getAttackList() {
+        List<String> attackList = new ArrayList<>();
+        attackList.add("PyroBall");
+        attackList.add("Inferno");
+        attackList.add("FlameThrower");
+        attackList.add("BlastBurn");
+        return attackList;
     }
 }
 

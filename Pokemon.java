@@ -1,33 +1,37 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 abstract class Pokemon {
     private String name;
     private int level;
     private int hp;
+    private final int maxHP;
     private int xp;
     private final int defence;
     private final int attack;
-    private int food;
+    private String food;
     private final int accuracy;
     private String[] pokemonType;
 
     public Pokemon(String name, int level, String[] pokemonType) {
         this.name = name;
         this.level = level;
-        this.hp = level * 10;
+        this.maxHP = level * 10;
+        this.hp = maxHP;
         this.xp = 0;
         this.defence = level;
         this.attack = level * 2;
-        this.food = 0;
         this.accuracy = level;
         this.pokemonType = pokemonType;
     }
 
     public void eats(String foodName) {
         System.out.println(name + " is eating " + foodName);
-        this.hp += 10;
-        System.out.println("Recovered 10 HP. Current HP: " + hp);
+        if (hp < maxHP && hp + (0.5 * maxHP) <= maxHP) {
+            this.hp = (int) (hp + (0.5 * maxHP));
+        } else {
+            this.hp = maxHP;
+        }
+        System.out.println("Recovered " + hp + " HP. Current HP: " + hp);
     }
 
     public void attack(Pokemon enemy) {
@@ -92,11 +96,11 @@ abstract class Pokemon {
         return attack;
     }
 
-    public int getFood() {
+    public String  getFood() {
         return food;
     }
 
-    public void setFood(int food) {
+    public void setFood(String food) {
         this.food = food;
     }
 
@@ -113,6 +117,8 @@ abstract class Pokemon {
     }
 
     abstract void evolve();
+
+    abstract List<String> getAttackList();
 }
 
 
