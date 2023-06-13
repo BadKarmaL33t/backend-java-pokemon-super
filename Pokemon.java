@@ -35,17 +35,18 @@ abstract class Pokemon {
         System.out.println("Recovered " + hp + " HP. Current HP: " + hp);
     }
 
-    public void attack(Pokemon enemy) {
-        System.out.println(name + " is attacking " + enemy.getName());
-        int damage = this.attack - enemy.getDefence();
-        enemy.defence(damage);
-    }
-
     public void defence(int damage) {
         System.out.println(name + " is defending against an attack");
-        damage -= this.defence;
-        this.hp -= damage;
-        System.out.println("Defended against " + damage + " damage. Current HP: " + hp);
+        damage -= defence;
+        hp -= damage;
+        if (hp <= 0) {
+            hp = 0;
+            System.out.println("Defended against " + damage + " damage. Current HP: " + hp);
+            System.out.println(name + " lost the fight and needs to recover.");
+        }
+        else {
+            System.out.println("Defended against " + damage + " damage. Current HP: " + hp);
+        }
     }
 
     public void winBattle() {

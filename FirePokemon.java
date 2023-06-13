@@ -25,6 +25,10 @@ public class FirePokemon extends Pokemon {
             System.out.println(getName() + " is using " + attackName + " on " + enemy.getName());
             int damage = getAttack() + attacks.get(attackName) - enemy.getDefence();
             enemy.defence(damage);
+
+            if (enemy.getHp() == 0) {
+                winBattle();
+            }
         } else {
             System.out.println(getName() + " does not know the attack: " + attackName);
         }

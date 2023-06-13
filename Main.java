@@ -14,14 +14,6 @@ class Main {
         electricPokemon.eats("Watt a Risotto a la Cube");
 
         firePokemon.useAttack("Inferno", grassPokemon);
-        waterPokemon.attack(grassPokemon);
-        grassPokemon.attack(electricPokemon);
-        electricPokemon.attack(firePokemon);
-
-        firePokemon.winBattle();
-        waterPokemon.winBattle();
-        grassPokemon.winBattle();
-        electricPokemon.winBattle();
 
         while (firePokemon.getLevel() < 20) {
             firePokemon.levelUp();
