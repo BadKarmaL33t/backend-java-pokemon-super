@@ -1,5 +1,3 @@
-import java.awt.event.WindowFocusListener;
-
 class Main {
     public static void main(String[] args) {
 
