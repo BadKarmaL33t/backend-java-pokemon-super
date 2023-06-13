@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class WaterPokemon extends Pokemon {
     private final Map<String, Integer> attacks;
+
     public WaterPokemon(String name, int level, String... pokemonType) {
         super(name, level, pokemonType);
         attacks = new HashMap<>();
@@ -27,6 +28,10 @@ public class WaterPokemon extends Pokemon {
             System.out.println(getName() + " is using " + attackName + " on " + enemy.getName());
             int damage = getAttack() + attacks.get(attackName) - enemy.getDefence();
             enemy.defence(damage);
+
+            if (enemy.getHp() == 0) {
+                winBattle();
+            }
         } else {
             System.out.println(getName() + " does not know the attack: " + attackName);
         }

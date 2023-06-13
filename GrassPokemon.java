@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class GrassPokemon extends Pokemon {
     private final Map<String, Integer> attacks;
+
     public GrassPokemon(String name, int level, String... pokemonType) {
         super(name, level, pokemonType);
         attacks = new HashMap<>();
@@ -27,6 +28,10 @@ public class GrassPokemon extends Pokemon {
             System.out.println(getName() + " is using " + attackName + " on " + enemy.getName());
             int damage = getAttack() + attacks.get(attackName) - enemy.getDefence();
             enemy.defence(damage);
+
+            if (enemy.getHp() == 0) {
+                winBattle();
+            }
         } else {
             System.out.println(getName() + " does not know the attack: " + attackName);
         }
@@ -46,6 +51,7 @@ public class GrassPokemon extends Pokemon {
             System.out.println(getName() + " is not ready to evolve yet.");
         }
     }
+
     @Override
     public List<String> getAttackList() {
         List<String> attackList = new ArrayList<>();
